@@ -58,19 +58,18 @@ public class Pozo {
     private String observacion;
     @Column(length = 200)
     private String pathMedia;
-    private boolean sincronizado;
     private int actividadCompletada;
     @JsonIgnore
     @Column(columnDefinition = "geometry(Point, 0)")
     private Point geom;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_sector", nullable = false, foreignKey = @ForeignKey(name = "fk_id_sector"))
     private Sector sector;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_responsable", nullable = false,
             foreignKey = @ForeignKey(name = "fk_id_responsable"))
     private Responsable responsable;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_descarga", nullable = false, foreignKey = @ForeignKey(name = "fk_id_descarga"))
     private Descarga descarga;
 }

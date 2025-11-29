@@ -27,7 +27,13 @@ public class SectorServiceImpl implements ISectorService {
 
     @Override
     public Sector update(Sector sector) {
-        return sectorRepo.save(sector);
+        Sector sectorUpdate = sectorRepo.findById(sector.getIdSector())
+                .orElseThrow(() -> new ModeloNotFoundException("Sector no encontrado"));
+        sectorUpdate.setNombre(sector.getNombre());
+        Proyecto proyecto = proyectoRepo.findById(sector.getProyecto().getIdProyecto())
+                .orElseThrow(() -> new ModeloNotFoundException("Proyecto no encontrado"));
+        sectorUpdate.setProyecto(proyecto);
+        return sectorRepo.save(sectorUpdate);
     }
 
     @Override
@@ -64,7 +70,6 @@ public class SectorServiceImpl implements ISectorService {
                 .map(s -> new SectorAndroid(
                         s.getIdSector(),
                         s.getNombre(),
-                        s.isSincronizado(),
                         s.getProyecto().getIdProyecto()
                 )).toList();
     }
@@ -80,7 +85,6 @@ public class SectorServiceImpl implements ISectorService {
         }
         Sector sector = new Sector();
         sector.setNombre(sectorAndroid.getNombre());
-        sector.setSincronizado(sectorAndroid.isSincronizado());
         sector.setProyecto(proyecto);
         return sectorRepo.save(sector);
     }
@@ -97,7 +101,6 @@ public class SectorServiceImpl implements ISectorService {
             throw new ModeloNotFoundException("Proyecto no encontrado");
         }
         sector.setNombre(sectorAndroid.getNombre());
-        sector.setSincronizado(sectorAndroid.isSincronizado());
         sector.setProyecto(proyecto);
         return sectorRepo.save(sector);
     }

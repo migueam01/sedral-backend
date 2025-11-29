@@ -34,7 +34,6 @@ public class PozoAndroid implements Serializable {
     private String calleNS;
     private String observacion;
     private String pathMedia;
-    private boolean sincronizado;
     private int actividadCompletada;
     private Integer idSector;
     private Integer idResponsable;

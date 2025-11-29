@@ -97,7 +97,6 @@ public class TuberiaServiceImpl implements ITuberiaService {
                         t.getMaterial(),
                         t.getFlujo(),
                         t.getFunciona(),
-                        t.isSincronizado(),
                         t.getPozoInicio().getIdPozo(),
                         t.getPozoFin().getIdPozo()
                 )).toList();

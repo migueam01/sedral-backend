@@ -65,7 +65,6 @@ public class ProyectoServiceImpl implements IProyectoService {
                         p.getIdProyecto(),
                         p.getNombre(),
                         p.getAlias(),
-                        p.isSincronizado(),
                         p.getGadm().getIdGadm()
                 )).toList();
     }
@@ -82,7 +81,6 @@ public class ProyectoServiceImpl implements IProyectoService {
         Proyecto proyecto = new Proyecto();
         proyecto.setNombre(proyectoAndroid.getNombre());
         proyecto.setAlias(proyectoAndroid.getAlias());
-        proyecto.setSincronizado(proyectoAndroid.isSincronizado());
         proyecto.setGadm(gadm);
         return proyectoRepo.save(proyecto);
     }
@@ -100,7 +98,6 @@ public class ProyectoServiceImpl implements IProyectoService {
         }
         proyecto.setNombre(proyectoAndroid.getNombre());
         proyecto.setAlias(proyectoAndroid.getAlias());
-        proyecto.setSincronizado(proyectoAndroid.isSincronizado());
         proyecto.setGadm(gadm);
         return proyectoRepo.save(proyecto);
     }

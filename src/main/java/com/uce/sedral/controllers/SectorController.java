@@ -27,10 +27,10 @@ public class SectorController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Sector> findById(@PathVariable("id") Integer isSector) {
-        Sector sector = service.findById(isSector);
+    public ResponseEntity<Sector> findById(@PathVariable("id") Integer idSector) {
+        Sector sector = service.findById(idSector);
         if (sector.getIdSector() == null) {
-            throw new ModeloNotFoundException("Id no encontrado " + isSector);
+            throw new ModeloNotFoundException("Id no encontrado " + idSector);
         }
         return new ResponseEntity<>(sector, HttpStatus.OK);
     }

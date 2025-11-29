@@ -16,8 +16,7 @@ public class Sector {
     private Integer idSector;
     @Column(nullable = false, length = 250)
     private String nombre;
-    private boolean sincronizado;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_proyecto", nullable = false, foreignKey = @ForeignKey(name = "fk_id_proyectos"))
     private Proyecto proyecto;
 }

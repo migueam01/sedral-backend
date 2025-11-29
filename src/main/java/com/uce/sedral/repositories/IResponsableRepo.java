@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface IResponsableRepo extends JpaRepository<Responsable, Integer> {
 
     Optional<Responsable> findByNombre(String nombre);
+
+    Responsable findOneByUsername(String username);
 }

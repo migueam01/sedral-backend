@@ -93,7 +93,6 @@ public class PozoServiceImpl implements IPozoService {
         pozo.setNombre(dto.getNombre());
         pozo.setFechaCatastro(convertirFechaADateTime(dto.getFechaCatastro()));
         pozo.setFechaActualizacion(convertirFechaADateTime(dto.getFechaActualizacion()));
-        pozo.setSincronizado(dto.isSincronizado());
         pozo.setTapado(dto.getTapado());
         pozo.setSistema(dto.getSistema());
         pozo.setPathMedia(dto.getPathMedia());
@@ -139,7 +138,6 @@ public class PozoServiceImpl implements IPozoService {
                 .orElseThrow(() -> new ModeloNotFoundException("Descarga no encontrada"));
         pozo.setNombre(dto.getNombre());
         pozo.setFechaCatastro(convertirFechaADateTime(dto.getFechaCatastro()));
-        pozo.setSincronizado(dto.isSincronizado());
         pozo.setTapado(dto.getTapado());
         pozo.setSistema(dto.getSistema());
         pozo.setPathMedia(dto.getPathMedia());
@@ -214,7 +212,6 @@ public class PozoServiceImpl implements IPozoService {
                         p.getCalleNS(),
                         p.getObservacion(),
                         p.getPathMedia(),
-                        p.isSincronizado(),
                         p.getActividadCompletada(),
                         p.getSector().getIdSector(),
                         p.getResponsable().getIdResponsable(),

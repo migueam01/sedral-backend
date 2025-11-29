@@ -20,7 +20,6 @@ public class TuberiaAndroid implements Serializable {
     private String material;
     private String flujo;
     private String funciona;
-    private boolean sincronizado;
     private Integer idPozoInicio;
     private Integer idPozoFin;
 }

@@ -15,6 +15,5 @@ public class ProyectoAndroid implements Serializable {
     private Integer idProyecto;
     private String nombre;
     private String alias;
-    private boolean sincronizado;
     private Integer idGadm;
 }

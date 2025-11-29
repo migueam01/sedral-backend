@@ -14,6 +14,5 @@ import java.io.Serializable;
 public class SectorAndroid implements Serializable {
     private Integer idSector;
     private String nombre;
-    private boolean sincronizado;
     private Integer idProyecto;
 }

@@ -20,5 +20,4 @@ public class Gadm {
     private String nombre;
     @Column(length = 250)
     private String alias;
-    private boolean sincronizado;
 }

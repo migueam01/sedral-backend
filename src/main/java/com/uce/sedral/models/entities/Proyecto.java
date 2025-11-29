@@ -18,10 +18,9 @@ public class Proyecto {
     private String nombre;
     @Column(length = 250)
     private String alias;
-    private boolean sincronizado;
     private double densidadPoblacional;
     private double dotacion;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_gadm", nullable = false, foreignKey = @ForeignKey(name = "fk_id_gadm"))
     private Gadm gadm;
 }
