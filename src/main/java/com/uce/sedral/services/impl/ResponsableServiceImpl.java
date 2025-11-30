@@ -93,4 +93,9 @@ public class ResponsableServiceImpl implements IResponsableService, UserDetailsS
                 authorities
         );
     }
+
+    @Override
+    public Responsable buscarPorUsername(String username) {
+        return repo.findOneByUsername(username);
+    }
 }

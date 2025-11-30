@@ -1,6 +1,7 @@
 package com.uce.sedral.services.impl;
 
 import com.uce.sedral.exceptions.ModeloNotFoundException;
+import com.uce.sedral.models.dto.CalculoHidraulicoDTO;
 import com.uce.sedral.models.dto.CotaAlturaTuberia;
 import com.uce.sedral.models.entities.CalculoHidraulico;
 import com.uce.sedral.models.entities.Proyecto;
@@ -67,6 +68,23 @@ public class CalculoHidraulicoServiceImpl implements ICalculoHidraulicoService {
             listaCalculos.add(calculoRepo.save(calculo));
         }
         return listaCalculos;
+    }
+
+    @Override
+    public List<CalculoHidraulicoDTO> obtenerTodos() {
+        List<CalculoHidraulicoDTO> calculos = new ArrayList<>();
+        calculoRepo.obtenerCalculosConPozos().forEach(c -> {
+            calculos.add(new CalculoHidraulicoDTO(
+                    Integer.parseInt(String.valueOf(c[0])),
+                    Integer.parseInt(String.valueOf(c[1])),
+                    String.valueOf(c[2]),
+                    String.valueOf(c[3]),
+                    Double.parseDouble(String.valueOf(c[4])),
+                    Double.parseDouble(String.valueOf(c[5])),
+                    Double.parseDouble(String.valueOf(c[6]))
+            ));
+        });
+        return calculos;
     }
 
     private double calcularPendiente(Tuberia tuberia) {

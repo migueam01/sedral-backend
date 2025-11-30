@@ -1,13 +1,12 @@
 package com.uce.sedral.controllers;
 
+import com.uce.sedral.models.dto.CalculoHidraulicoDTO;
 import com.uce.sedral.models.entities.CalculoHidraulico;
 import com.uce.sedral.services.ICalculoHidraulicoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +16,12 @@ import java.util.List;
 public class CalculoController {
 
     private final ICalculoHidraulicoService service;
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<CalculoHidraulicoDTO>> obtenerTodos() {
+        List<CalculoHidraulicoDTO> calculos = service.obtenerTodos();
+        return ResponseEntity.ok(calculos);
+    }
 
     @PostMapping(value = "/{id}")
     public ResponseEntity<List<CalculoHidraulico>> calcularTodos(@PathVariable("id") Integer idProyecto) {

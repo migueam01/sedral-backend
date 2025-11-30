@@ -34,6 +34,15 @@ public class ResponsableController {
         return new ResponseEntity<>(responsable, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/buscar/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Responsable> buscarPorUsername(@PathVariable("username") String username) {
+        Responsable responsable = service.buscarPorUsername(username);
+        if (responsable.getIdResponsable() == null) {
+            throw new ModeloNotFoundException("Responsable no encontrado " + username);
+        }
+        return new ResponseEntity<>(responsable, HttpStatus.OK);
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Responsable> save(@Valid @RequestBody Responsable responsableBody) {
         Responsable responsable = service.save(responsableBody);
@@ -56,5 +65,4 @@ public class ResponsableController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
