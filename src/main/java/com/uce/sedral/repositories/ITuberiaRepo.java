@@ -19,9 +19,19 @@ public interface ITuberiaRepo extends JpaRepository<Tuberia, Integer> {
             "'flujo', flujo, 'funciona', funciona)) FROM tuberias", nativeQuery = true)
     List<Object> findAllGeoJson();
 
-    @Query(value = "SELECT id_tuberia, diametro, material, flujo, funciona, " +
-            "ST_AsText(ST_Transform(geom, 4326)) as wkt " +
-            "FROM tuberias",
+    @Query(value = """
+            SELECT t.id_tuberia,
+                   t.diametro,
+                   t.material,
+                   t.funciona,
+                   ST_AsText(ST_Transform(t.geom, 4326)) as wkt,
+                   ch.pendiente,
+                   ch.velocidad,
+                   ch.caudal
+                   FROM tuberias t
+                   LEFT JOIN calculos_hidraulicos ch
+                   ON t.id_tuberia = ch.id_tuberia
+            """,
             nativeQuery = true)
     List<Object[]> findTuberiasWithCoordinates();
 

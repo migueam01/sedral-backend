@@ -12,7 +12,9 @@ public class TuberiaMapa implements Serializable {
     private Integer idTuberia;
     private double diametro;
     private String material;
-    private String flujo;
     private String funciona;
+    private double pendiente;
+    private double caudal;
+    private double velocidad;
     private List<Coordenada> coordenadas;
 }
