@@ -62,7 +62,6 @@ public class JwtExpirationFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getServletPath();
         return path.startsWith("/v1/auth/") ||
-                path.startsWith("/v1/debug/") ||
                 path.startsWith("/swagger-ui/") ||
                 path.startsWith("/v1/api-docs/");
     }

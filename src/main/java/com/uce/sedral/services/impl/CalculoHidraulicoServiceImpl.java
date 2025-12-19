@@ -89,19 +89,21 @@ public class CalculoHidraulicoServiceImpl implements ICalculoHidraulicoService {
 
     private double calcularPendiente(Tuberia tuberia) {
         CotaAlturaTuberia cotasAlturas = tuberiaRepo.getCotasAlturasTuberias(tuberia.getIdTuberia());
-        return (((cotasAlturas.getCotaInicio() - cotasAlturas.getAlturaInicio()) -
-                (cotasAlturas.getCotaFin() - cotasAlturas.getAlturaFin())) / tuberia.getLongitud()) * 100;
+        return ((cotasAlturas.getCotaInicio() - cotasAlturas.getCotaFin()) / tuberia.getLongitud()) * 100;
     }
 
     private double calcularCaudal(Tuberia tuberia) {
         double poblacion = (tuberia.getAreaAporte() / 100) * proyecto.getDensidadPoblacional();
         double caudal = (poblacion * proyecto.getDotacion()) / 86400; //En l/s
-        return caudal / 1000; //En m3/s
+        System.out.println("Caudal l/s " + caudal);
+        return caudal;
     }
 
     private double calcularVelocidad(double caudal, Tuberia tuberia) {
         double areaTuberia = (Math.PI * Math.pow((double) tuberia.getDiametro() / 1000, 2)) / 4;
-        return caudal / areaTuberia;
+        double velocidad = (caudal / 1000) / areaTuberia; //caudal / 1000 para obtener en m3/s
+        System.out.println("Velocidad " + velocidad);
+        return velocidad;
     }
 
     private void buscarProyecto(Integer idProyecto) {

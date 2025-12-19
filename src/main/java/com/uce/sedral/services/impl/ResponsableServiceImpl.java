@@ -5,6 +5,7 @@ import com.uce.sedral.models.entities.Responsable;
 import com.uce.sedral.repositories.IResponsableRepo;
 import com.uce.sedral.services.IResponsableService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -73,7 +74,11 @@ public class ResponsableServiceImpl implements IResponsableService, UserDetailsS
         Responsable responsable = repo.findOneByUsername(username);
 
         if (responsable == null) {
-            throw new UsernameNotFoundException("Usuario no existe: " + username);
+            throw new UsernameNotFoundException("Credenciales inválidas");
+        }
+
+        if (!responsable.isHabilitado()) {
+            throw new DisabledException("Cuenta deshabilitada");
         }
 
         List<GrantedAuthority> authorities = new ArrayList<>();
