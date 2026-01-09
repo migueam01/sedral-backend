@@ -95,8 +95,11 @@ public class TuberiaServiceImpl implements ITuberiaService {
                         t.getCorona(),
                         t.getDiametro(),
                         t.getMaterial(),
+                        t.getLongitud(),
                         t.getFlujo(),
                         t.getFunciona(),
+                        t.getAreaAporte(),
+                        t.getCalado(),
                         t.getPozoInicio().getIdPozo(),
                         t.getPozoFin().getIdPozo()
                 )).toList();

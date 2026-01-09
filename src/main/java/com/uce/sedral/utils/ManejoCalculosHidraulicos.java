@@ -1,7 +1,6 @@
 package com.uce.sedral.utils;
 
 import com.uce.sedral.models.dto.CotaAlturaTuberia;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,41 +8,67 @@ import lombok.Setter;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.PI;
+import static java.lang.Math.acos;
+import static java.lang.Math.sin;
 import static com.uce.sedral.utils.ConstantesHidraulicas.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class ManejoCalculosHidraulicos {
 
     private double diametro;
+    private double calado;
+    private double anguloInferior;
+    private double radioHidraulicoParcial;
+    private double radioHidraulicoLleno;
+    private double manning;
 
-    private double calcularPendiente(CotaAlturaTuberia cotaAlturaTuberia, double longitud) {
+    public ManejoCalculosHidraulicos(double diametro, double calado) {
+        this.diametro = diametro;
+        this.calado = calado;
+        this.anguloInferior = 2 * acos(1 - (2 * calado / diametro));
+        this.radioHidraulicoParcial = (1 - (sin(anguloInferior) / anguloInferior)) * diametro / 4;
+        this.radioHidraulicoLleno = diametro / 4;
+    }
+
+    public double calcularPendiente(CotaAlturaTuberia cotaAlturaTuberia, double longitud) {
         return ((cotaAlturaTuberia.getCotaInicio() - cotaAlturaTuberia.getCotaFin()) / longitud) * 100;
     }
 
-    private double calcularVelocidadManning(double pendiente, String material) {
+    public double calcularVelocidadManningParcial(double pendiente, String material) {
+        manning = obtenerManning(material);
+        return (1 / manning) * pow(radioHidraulicoParcial, (double) 2 / 3) * sqrt(pendiente);
+    }
+
+    public double calcularVelocidadManningLleno(double pendiente, String material) {
+        manning = obtenerManning(material);
+        return (1 / manning) * pow(radioHidraulicoLleno, (double) 2 / 3) * sqrt(pendiente);
+    }
+
+    private double obtenerManning(String material) {
         double manning = 0.00;
         if (material.equalsIgnoreCase("HS")) {
             manning = MANNING_HS;
         } else if (material.equalsIgnoreCase("PVC")) {
             manning = MANNING_PVC;
         }
-        return (1 / manning) * pow(diametro / 4, (double) 2 / 3) * sqrt(pendiente);
+        return manning;
     }
 
-    private double calcularCaudalContinuidad(double velocidadManning) {
-        return velocidadManning * PI * pow(diametro, 2) / 4;
+    public double calcularAreaParcial() {
+        return (anguloInferior - sin(anguloInferior)) * pow(diametro, 2) / 8;
     }
 
-    private double calcularCaudalMedioDiario(double dotacion, double poblacion) {
-        return poblacion * dotacion / 86400;
+    public double calcularAreaLlena() {
+        return PI * pow(diametro, 2) / 4;
     }
 
-    private double calcularCaudalTotal(double caudalMedioDiario, double areaAporte) {
-        double caudalSanitario = caudalMedioDiario * 0.8;
-        double caudalInfiltracion = areaAporte * 0.03;
-        return caudalSanitario + CAUDAL_ILICITAS + caudalInfiltracion;
+    public double calcularCaudalParcial(double velocidadManningParcial, double areaParcial) {
+        return velocidadManningParcial * areaParcial;
+    }
+
+    public double calcularCaudalLleno(double velocidadManningLleno, double areaLlena) {
+        return velocidadManningLleno * areaLlena;
     }
 }

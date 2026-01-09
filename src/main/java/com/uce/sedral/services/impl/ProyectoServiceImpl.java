@@ -65,6 +65,8 @@ public class ProyectoServiceImpl implements IProyectoService {
                         p.getIdProyecto(),
                         p.getNombre(),
                         p.getAlias(),
+                        p.getDotacion(),
+                        p.getPoblacion(),
                         p.getGadm().getIdGadm()
                 )).toList();
     }

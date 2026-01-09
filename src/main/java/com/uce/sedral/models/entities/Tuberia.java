@@ -33,6 +33,7 @@ public class Tuberia {
     @Column(nullable = false, length = 3)
     private String funciona;
     private double areaAporte;
+    private double calado;
     @JsonIgnore
     @Column(columnDefinition = "geometry(LineString,0)")
     private LineString geom;

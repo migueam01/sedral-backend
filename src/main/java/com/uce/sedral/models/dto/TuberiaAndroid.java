@@ -18,8 +18,11 @@ public class TuberiaAndroid implements Serializable {
     private double corona;
     private int diametro;
     private String material;
+    private double longitud;
     private String flujo;
     private String funciona;
+    private double areaAporte;
+    private double calado;
     private Integer idPozoInicio;
     private Integer idPozoFin;
 }

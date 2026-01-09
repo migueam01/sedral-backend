@@ -13,13 +13,20 @@ public interface ICalculoHidraulicoRepo extends JpaRepository<CalculoHidraulico,
 
     @Query(value = """
             SELECT
-            ch.id_calculo AS idCalculo,
-            ch.id_tuberia AS idTuberia,
+            ch.id_calculo AS id_Calculo,
+            ch.id_tuberia AS id_Tuberia,
             p1.nombre AS nombrePozoInicio,
             p2.nombre AS nombrePozoFin,
+            t.diametro AS diametro,
+            t.material AS material,
+            t.calado AS calado,
+            ch.manning AS manning,
             ch.pendiente AS pendiente,
             ch.velocidad AS velocidad,
-            ch.caudal AS caudal
+            ch.caudal AS caudal,
+            ch.relacion_caudal AS relacionCaudal,
+            ch.relacion_velocidad AS relacionVelocidad,
+            ch.relacion_area AS relacionArea
             FROM calculos_hidraulicos ch
             JOIN tuberias t
             ON ch.id_tuberia = t.id_tuberia
