@@ -21,7 +21,7 @@ public class CalculoHidraulico {
     private double relacionCaudal;
     private double relacionVelocidad;
     private double relacionArea;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_tuberia", nullable = false,
             foreignKey = @ForeignKey(name = "fk_id_tuberia"))
     private Tuberia tuberia;

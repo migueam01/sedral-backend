@@ -39,11 +39,11 @@ public class Tuberia {
     private LineString geom;
     @JsonIgnore
     private int srid;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_pozo_inicio", nullable = false,
             foreignKey = @ForeignKey(name = "fk_id_pozo_inicio"))
     private Pozo pozoInicio;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_pozo_fin", nullable = false,
             foreignKey = @ForeignKey(name = "fk_id_pozo_fin"))
     private Pozo pozoFin;

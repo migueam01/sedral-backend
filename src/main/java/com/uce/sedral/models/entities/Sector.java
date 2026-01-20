@@ -16,7 +16,7 @@ public class Sector {
     private Integer idSector;
     @Column(nullable = false, length = 250)
     private String nombre;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_proyecto", nullable = false, foreignKey = @ForeignKey(name = "fk_id_proyectos"))
     private Proyecto proyecto;
 }

@@ -5,9 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -29,8 +27,18 @@ public class Responsable {
     private boolean habilitado;
     private String correo;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "id_responsable", referencedColumnName = "idResponsable"),
-            inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
+    @JoinTable(
+            name = "usuarios_roles",
+            joinColumns = @JoinColumn(
+                    name = "id_responsable",
+                    referencedColumnName = "idResponsable",
+                    foreignKey = @ForeignKey(name = "fk_id_responsable")
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "id_rol",
+                    referencedColumnName = "idRol",
+                    foreignKey = @ForeignKey(name = "fk_id_rol")
+            )
+    )
     private List<Rol> roles;
-
 }

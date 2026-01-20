@@ -20,7 +20,7 @@ public class Proyecto {
     private String alias;
     private double dotacion;
     private int poblacion;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "id_gadm", nullable = false, foreignKey = @ForeignKey(name = "fk_id_gadm"))
     private Gadm gadm;
 }
