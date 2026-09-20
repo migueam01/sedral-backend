@@ -19,7 +19,7 @@ public class Pozo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPozo;
-    @Column(nullable = false, length = 10, unique = true)
+    @Column(nullable = false, length = 50, unique = true)
     private String nombre;
     @Column(length = 10)
     private String sistema;
@@ -50,9 +50,9 @@ public class Pozo {
     private double dimensionTapa;
     private double altura;
     private double ancho;
-    @Column(name = "calle_oe", length = 30)
+    @Column(name = "calle_oe", length = 150)
     private String calleOE;
-    @Column(name = "calle_ns", length = 30)
+    @Column(name = "calle_ns", length = 150)
     private String calleNS;
     @Column(length = 100)
     private String observacion;

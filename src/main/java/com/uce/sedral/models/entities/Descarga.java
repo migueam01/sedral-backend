@@ -14,7 +14,7 @@ public class Descarga {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idDescarga;
-    @Column(nullable = false, length = 25)
+    @Column(nullable = false, length = 250)
     private String nombre;
     @Column(length = 150)
     private String ubicacion;

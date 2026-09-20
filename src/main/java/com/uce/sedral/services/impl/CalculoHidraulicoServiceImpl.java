@@ -109,6 +109,25 @@ public class CalculoHidraulicoServiceImpl implements ICalculoHidraulicoService {
         caudalLleno = formatearNumero(calculosHidraulicos.calcularCaudalLleno(velocidadManningLleno, areaLlena),
                 2);
         manning = calculosHidraulicos.getManning();
+
+        /*System.out.println("---------PARÁMETROS HIDRÁULICOS----------");
+        System.out.println("Cota inicio = " + cotasAlturas.getCotaInicio());
+        System.out.println("Altura inicio = " + cotasAlturas.getAlturaInicio());
+        System.out.println("Cota fin = " + cotasAlturas.getCotaFin());
+        System.out.println("Altura fin = " + cotasAlturas.getAlturaFin());
+        System.out.println("Longitud = " + tuberia.getLongitud());
+        System.out.println("Diámetro = " + convertirMilimetrosAMetros(tuberia.getDiametro()));
+        System.out.println("Calado = " + tuberia.getCalado());
+        System.out.println("Material = " + tuberia.getMaterial());
+        System.out.println("Manning = " + manning);
+        System.out.println("---------RESULTADOS HIDRÁULICOS----------");
+        System.out.println("Pendiente = " + pendiente);
+        System.out.println("Ángulo central = " + calculosHidraulicos.getAnguloInferior());
+        System.out.println("Radio Hidráulico = " + calculosHidraulicos.getRadioHidraulicoParcial());
+        System.out.println("Área = " + areaParcial);
+        System.out.println("Velocidad = " + velocidadManningParcial);
+        System.out.println("Caudal = " + caudalParcial);*/
+        //manning = calculosHidraulicos.getManning();
     }
 
     @Override

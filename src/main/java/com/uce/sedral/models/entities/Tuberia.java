@@ -32,6 +32,7 @@ public class Tuberia {
     private String flujo;
     @Column(nullable = false, length = 3)
     private String funciona;
+    @JsonIgnore
     private double areaAporte;
     private double calado;
     @JsonIgnore

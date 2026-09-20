@@ -111,14 +111,23 @@ public class TuberiaServiceImpl implements ITuberiaService {
         List<TuberiaMapa> tuberiasMapa = new ArrayList<>();
 
         for (Object[] resultado : resultados) {
+            Double pendiente;
+            Double velocidad;
+            Double caudal;
             Integer idTuberia = (Integer) resultado[0];
             Integer diametro = (Integer) resultado[1];
             String material = (String) resultado[2];
             String funciona = (String) resultado[3];
             String wkt = (String) resultado[4];
-            Double pendiente = (Double) resultado[5];
-            Double velocidad = (Double) resultado[6];
-            Double caudal = (Double) resultado[7];
+            if (resultado[5] != null) {
+                pendiente = (Double) resultado[5];
+                velocidad = (Double) resultado[6];
+                caudal = (Double) resultado[7];
+            } else {
+                pendiente = 0.0;
+                velocidad = 0.0;
+                caudal = 0.0;
+            }
 
             TuberiaMapa tuberiaMapa = new TuberiaMapa();
             tuberiaMapa.setIdTuberia(idTuberia);

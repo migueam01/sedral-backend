@@ -33,7 +33,8 @@ public class ManejoCalculosHidraulicos {
     }
 
     public double calcularPendiente(CotaAlturaTuberia cotaAlturaTuberia, double longitud) {
-        return (cotaAlturaTuberia.getCotaInicio() - cotaAlturaTuberia.getCotaFin()) / longitud;
+        return ((cotaAlturaTuberia.getCotaInicio() - cotaAlturaTuberia.getAlturaInicio()) -
+                (cotaAlturaTuberia.getCotaFin() - cotaAlturaTuberia.getAlturaFin())) / longitud;
     }
 
     public double calcularVelocidadManningParcial(double pendiente, String material) {
